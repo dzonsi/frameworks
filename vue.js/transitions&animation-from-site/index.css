@@ -1,0 +1,67 @@
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .5s;
+	color: red;
+}
+.fade-enter, .fade-leave-to {
+	opacity: 0;
+}
+.fade-enter-to, .fade-leave {
+	opacity: 0.7;
+}
+
+.slide-fade-enter-active {
+	transition: all 0.5s ease;
+}
+.slide-fade-leave-active {
+	transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+	transform: translateX(15px);
+	opacity: 0;
+}
+.bounce-enter-active {
+	animation: bounce-in .8s;
+}
+.bounce-leave-active {
+	animation: bounce-in .8s reverse;
+}
+@keyframes bounce-in {
+	0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity 1s ease;
+}
+.component-fade-enter, .component-fade-leave-to {
+	opacity: 0;
+}
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.flip-list-move {
+  transition: transform 1s;
+}
+.nice {
+	text-decoration: none;
+	font-family: "Comic Sans MS";
+	font-size: 25px;
+	color: dodgerblue;
+}
+.strong {
+	background-color: linen;
+}

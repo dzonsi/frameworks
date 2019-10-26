@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue components in depth from site</title>
+
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+			<practice-one></practice-one>
+			<practice-one></practice-one>
+			<practice-two></practice-two>
+			<practice-three></practice-three>
+			<practice-four></practice-four>
+			<practice-five
+				five-title="Component five"
+				v-bind:author="author"
+			></practice-five>
+			<practice-six
+				v-for="post in posts"
+				v-bind:key="post.id"
+				v-bind:id="post.id"
+				v-bind:title="post.title"
+			></practice-six>
+			<div :style="{ fontSize: postFontSize + 'em' }">
+				<practice-seven
+					v-for="post in posts2"
+					v-bind:key="post.id"
+					v-bind:post="post"
+					v-on:enlarge-text="postFontSize += 0.1"
+				></practice-seven>
+			</div>
+			<practice-eight v-model="lovingVue"></practice-eight>
+			<practice-nine v-bind:url="url">
+				Google
+			</practice-nine>
+			<practice-nine v-bind:url="url">
+				<practice-one></practice-one>
+			</practice-nine>
+			<practice-ten>
+				<template v-slot:header>
+					<h1>Here might be a page title</h1>
+				</template>
+
+				<template v-slot:default><!--opciono-->
+					<p>A paragraph for the main content.</p>
+	 				<p>And another one.</p>
+	 			</template>
+
+				<template #footer>
+					<p>Here's some contact info</p>
+				</template>
+			</practice-ten>
+			<practice-eleven>
+				<template v-slot:default="slotProps">
+					{{ slotProps.user.firstName }}
+				</template>
+			</practice-eleven>
+			<div>
+				<button
+					v-for="tab in tabs"
+					v-bind:key="tab"
+					v-bind:class="['tab-button', {active:
+						currentTab === tab }]"
+					v-on:click="currentTab = tab"
+				> {{ tab }}</button>
+
+				<keep-alive>
+					<component
+						v-bind:is="currentTabComponent"
+						class="tab"
+					></component>
+				</keep-alive>
+			</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>

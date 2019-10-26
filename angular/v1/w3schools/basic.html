@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AngularJS basic from w3schools</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+
+	<script src="script-basic.js"></script>
+
+	<style>
+		input[type=password].ng-empty {
+			background-color: linen;
+		}
+		input[type=password].ng-valid {
+			background-color: lightblue;
+		}
+		.first {
+			height: 150px;
+			transition: all linear 0.5s;
+			background-color: royalblue;
+		}
+		.ng-show {
+			border: 1px solid red;
+		}
+		.ng-hide {
+			height: 0;
+		}
+	</style>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+	<w3-test-directive></w3-test-directive>
+	<div w3-test-directive></div>
+	<div class="w3-test-directive-two"></div>
+	<!-- directive: w3-test-directive-three -->
+
+	<div>Name: <input type="text" ng-model="name">
+			<h1>{{placeHolder}} : {{name}}</h1>
+	</div>
+
+	<form name="myForm">
+		<span><b>Email:</b></span>
+		<input type="email" name="myAddress" ng-model="text">
+		<span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address!</span>
+	</form>
+
+	<form name="myForm2">
+		<span><b>Email:</b></span>
+		<input type="text" name="myAddress2" ng-model="text2" required>
+		<h1>Status</h1>
+		<p>Valid: {{myForm2.myAddress2.$valid}} (if true, the value meets all criteria).</p>
+		<p>Dirty: {{myForm2.myAddress2.$dirty}} (if true, the value has been changed).</p>
+		<p>Touched: {{myForm2.myAddress2.$touched}} (if true, the field has been in focus).</p>
+	</form>
+
+	<form name="myForm3">
+		Enter your name: <input type="password" name="myName" ng-model="text3" required>
+	</form>
+
+	<h1 ng-click="changeName2()">{{name2}}</h1>
+
+	<ul>
+		<li ng-repeat="x in names">{{x.name + ", " + x.country }}</li>
+	</ul>
+
+	<div ng-controller="filterCtrl">
+		<h1>Filters with seperate controller:</h1>
+		<div>The name is: {{firstName + " " + lastName | uppercase }}</div>
+		<div>The name is: {{upperCase() | lowercase}}</div>
+		<ul>
+			<li ng-repeat="x in data | orderBy: 'country'">{{ x.name + ", " + x.country }}</li>
+		</ul>
+		<ul>
+			<li ng-repeat="x in data | filter: 'i'">{{ x.name + ", " + x.country }}</li>
+		</ul>
+		<div>
+			<input type="text" ng-model="filterTest">
+			<span>Filter list below:</span>
+			<ul>
+				<li ng-repeat="x in data | filter: filterTest">{{ x.name + " , " + x.country }}</li>
+			</ul>
+		</div>
+		<h2>Click on the table header to change sorting order:</h2>
+		<table style="border: 1px solid dodgerblue; width: 50%;">
+			<tr>
+				<th style="border: 1px solid dodgerblue;">Index:</th>
+				<th style="border: 1px solid dodgerblue;" ng-click="orderByMe('name')">Name</th>
+				<th style="border: 1px solid dodgerblue;" ng-click="orderByMe('country')">Country</th>
+			</tr>
+			<tr ng-repeat="x in data | orderBy: myOrderBy">
+				<td>{{$index + 1}}</td>
+				<td>{{x.name}}</td>
+				<td>{{x.country}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div ng-controller="servicesCtrl">
+		<h2>Url of the paige:</h2>
+		<p>{{myUrl}}</p>
+		<h2>{{myHeader}}</h2>
+		<h2>{{theTime}}</h2>
+		<p>{{hex}}</p>
+		<ul>
+			<li ng-repeat="x in counts">{{ x | myFormat}}</li>
+		</ul>
+		<p>{{content}}</p>
+	</div>
+
+	<div ng-controller="selectCtrl">
+		<h2>Select:</h2>
+<!--opcija je objekat-->
+		<select ng-model="selectedName" ng-options="x for x in names"></select>
+<!--opcija je string-->
+		<select>
+			<option ng-repeat="x in names">{{x}}</option>
+		</select>
+		<h2>Bolje je koristiti ng-options:</h2>
+		<select ng-model="namesOfCars" ng-options="x.model for x in cars"></select>
+		<h3>You selected: {{namesOfCars.model}}</h3>
+		<h3>Its color is: {{namesOfCars.color}}</h3>
+		<h2>Objekat a ne array u opcijama:</h2>
+		<select ng-model="name" ng-options="y.brand for (x, y) in carsObj"></select>
+		<h3>You selected: {{name.brand}}</h3>
+		<h3>You selected: {{name.model}}</h3>
+		<h3>Its color is: {{name.color}}</h3>
+	</div>
+<!--DOM-->
+	<h2>DOM:</h2>
+	<div ng-controller="domCtrl">
+		<button ng-disabled="mySwitch">Click me!</button>
+		<p>
+			<input type="checkbox" ng-model="mySwitch">Button
+		</p>
+		<p>{{mySwitch}}</p>
+		<p ng-show="mySwitch">I am wisible.</p>
+		<p ng-show="true">I am wisible.</p>
+		<p ng-show="hour > 12">I am wisible.</p>
+		<p ng-hide="true">I am wisible.</p>
+		<p ng-hide="false">I am wisible.</p>
+	</div>
+<!--Events-->
+	<h2>Events:</h2>
+	<div ng-controller="eventCtrl">
+		<button ng-click="count = count + 1">Click me!</button>
+		<p style="color:{{col}}" ng-mousemove="count = count + 1" ng-mouseenter="col = 'red'" ng-mouseleave="col = 'green'">{{count}}</p>
+		<p style="color:{{col2}};font-size: {{size}}" ng-click="change()">Random text! Randome text! Click me!!!</p>
+		<h2 ng-click="hide()">Menu(click to hide/show):</h2>
+		<div ng-show="showMe">
+			<p>Pizza</p>
+			<p>Pasta</p>
+			<p>Pesce</p>
+		</div>
+		<h1 ng-mousemove="cordinates($event)">Mouse Over Me!</h1>
+		<p>Cordinates: {{x + " " + y}}</p>
+	</div>
+<!--Forms-->
+	<div ng-controller="formCtrl">
+		<form>Pick a topic:
+			<input type="radio" ng-model="myVar" value="dogs">Dogs
+			<input type="radio" ng-model="myVar" value="tuts">Tutorials
+			<input type="radio" ng-model="myVar" value="cars">Cars
+		</form>
+		<div ng-switch="myVar">
+				<div ng-switch-when="dogs">
+			     <h1>Dogs</h1>
+			     <p>Welcome to a world of dogs.</p>
+			  </div>
+			  <div ng-switch-when="tuts">
+			     <h1>Tutorials</h1>
+			     <p>Learn from examples.</p>
+			  </div>
+			  <div ng-switch-when="cars">
+			     <h1>Cars</h1>
+			     <p>Read about cars.</p>
+			  </div>
+		</div>
+
+		<form novalidate>
+	    First Name:<br>
+	    <input type="text" ng-model="user.firstName"><br>
+	    Last Name:<br>
+	    <input type="text" ng-model="user.lastName">
+	    <br><br>
+	    <button ng-click="reset()">RESET</button>
+  	</form>
+		<p>{{user.firstName + " " + user.lastName}}</p>
+		<p>{{master.firstName + " " + master.lastName}}</p>
+
+	</div>
+<!--Form Validation-->
+	<h2>Form validation:</h2>
+	<div ng-controller="valCtrl">
+		<form name="form1">
+			<input type="text" name="input1" ng-model="input1" required>
+		</form>
+		<p>The input's valid state is:</p>
+		<h3>{{form1.input1.$valid}}</h3>
+
+		<form name="form2">
+			Name: <input type="text" name="input2" ng-model="input2" required>
+			<span ng-show="form2.input2.$touched && form2.input2.$invalid">The name is required!</span>
+		</form>
+
+		<form name="form3">Try writing in the input:
+			<input type="text" name="input3" ng-model='input3' required my-directive>
+		</form>
+
+		<p>The input's valid state is:</p>
+		<h3>{{form3.input3.$valid}}</h3>
+<!--Animate-->
+		<H2>Hide the div <input type="checkbox" ng-model="check1"></H2>
+		<div class="first" ng-hide="check1"></div>
+
+		<div ng-include="'import.htm'"></div><!--HTM-->
+		<div ng-include="'new.html'"></div><!--HTML-->
+
+	</div>
+<!--Route-->
+	<div>
+		<p><a href="#/!">Main</a></p>
+		<a href="#!london">London</a>
+		<a href="#!paris">Paris</a>
+		<p>Click on the links.</p>
+		<div ng-view></div>
+	</div>
+
+</body>
+
+</html>

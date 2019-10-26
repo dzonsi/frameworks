@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic from tutorialspoint!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
+
+	<script src="mainApp.js"></script>
+	<script src="studentController.js"></script>
+
+</head>
+
+<body ng-app="mainApp" ng-controller="studentController">
+	<table>
+		<tr>
+			<td>Enter first name:</td>
+			<td><input type="text" ng-model="student.firstName"></td>
+		</tr>
+		<tr>
+			<td>Enter last name:</td>
+			<td><input type="text" ng-model="student.lastName"></td>
+		</tr>
+		<tr>
+			<td>Enter fees:</td>
+			<td><input type="text" ng-model="student.fees"></td>
+		</tr>
+		<tr>
+			<td>Enter subject:</td>
+			<td><input type="text" ng-model="subjectName"></td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td>Name in Upper Case: {{student.fullName() | uppercase}}</td>
+		</tr>
+		<tr>
+			<td>Name in Lower Case: {{ student.fullName() | lowercase}}</td>
+		</tr>
+		<tr>
+			<td>Fees: {{student.fees | currency}}</td>
+		</tr>
+		<tr>
+			<td>Subject:</td>
+			<td>
+				<ul>
+					<li ng-repeat="subject in student.subjects | filter: subjectName | orderBy: 'marks'">{{ subject.name + ", marks: " + subject.marks}}</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td><input type="checkbox" ng-model="opcija1">Disable Button</td>
+			<td><button ng-disabled="opcija1">Click me!</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" ng-model="opcija2">Show Button</td>
+			<td><button ng-show="opcija2">Click me!</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" ng-model="opcija3">Hide Button</td>
+			<td><button ng-hide="opcija3">Click me!</button></td>
+		</tr>
+		<tr>
+			<td>Total click: {{counter}}</td>
+			<td><button ng-click="counter = counter + 1">Click ++!</button></td>
+		</tr>
+	</table>
+
+	<form name="studentForm" novalidate>
+		<table>
+			<tr>
+				<td>Enter first name:</td>
+				<td>
+					<input type="text" name="firstName" ng-model="student2.firstName" required>
+					<span style="color: red;" ng-show="studentForm.firstName.$dirty && studentForm.firstName.$invalid">
+						<span ng-show="studentForm.firstName.$error.required">First Name is required.</span>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter last name:</td>
+				<td>
+					<input type="text" name="lastName" ng-model="student2.lastName" required="">
+					<span style="color: red;" ng-show="studentForm.lastName.$dirty && studentForm.lastName.$invalid">
+						<span ng-show="studentForm.lastName.$error.required">Last Name is required.</span>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>
+					<input type="email" name="email" ng-model="student2.email" required>
+					<span ng-show="studentForm.email.$dirty && studentForm.email.$invalid">
+						<span style="color: red;" ng-show="studentForm.email.$error.required">Email is required.</span>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td><button ng-click="student2.reset()">Reset</button></td>
+				<td><button ng-disabled="studentForm.firstName.$dirty && studentForm.firstName.$invalid || studentForm.lastName.$dirty && studentForm.lastName.$invalid || studentForm.email.$invalid">Submit</button></td>
+			</tr>
+		</table>
+	</form>
+
+	<div ng-include="'main.htm'"></div>
+	<div ng-include="'subjects.htm'"></div>
+
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>Roll No</td>
+			<td>Percentage</td>
+		</tr>
+		<tr ng-repeat="student in studentsFile">
+			<td>{{student.Name}}</td>
+			<td>{{student.RollNo}}</td>
+			<td>{{student.Percentage}}</td>
+		</tr>
+	</table>
+<!--View-->
+	<p><a href="#!addStudent">Add Student</a></p>
+	<p><a href="#!viewStudents">View Students</a></p>
+	<div ng-view></div>
+
+	<script type="text/ng-template" id="addStudent.htm">
+		<h2>Add Student</h2>
+		{{message}}
+	</script>
+	<script type="text/ng-template" id="viewStudents.htm">
+		<h2>View Students</h2>
+		{{message}}
+	</script>
+<!--Scope-->
+	<h2>Scope:</h2>
+	<p>{{ctrlMessage}} <br>{{type}}</p>
+
+	<div ng-controller="addStudentController">
+	<p>{{ctrlMessage}} <br>{{type}}</p>
+	</div>
+
+	<div ng-controller="viewStudentsController">
+	<p>{{ctrlMessage}} <br>{{type}}</p>
+	</div>
+<!--Services-->
+	<h2>Custom services:</h2>
+	<p>Enter a number: 
+		<input type="number" ng-model="number">
+		<button ng-click="square()">X<sup>2</sup></button>
+	</p>
+	<p>Result: <span>{{result}}</span></p>
+	<h2>Default value:</h2>
+	<p>{{defaultValueNumber}}</p>
+<!--Provider-->
+	<h2>Provider:</h2>
+	<p>Enter a number: 
+		<input type="number" ng-model="number2">
+		<button ng-click="divide()">X/2</button>
+	</p>
+	<p>Result: <span>{{result2}}</span></p>
+
+</body>
+
+</html>

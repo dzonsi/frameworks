@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue basic from site</title>
+
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-bind:title="message2">{{ message }}</p>
+		<p v-if="seen">Now you see me!</p>
+		<button v-on:click="hide">Hide/show!</button>
+		<ul>
+			<li v-for="todo in todos">{{ todo.text }}</li>
+		</ul>
+		<p>{{ message3 }}</p>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+		<p>{{ message4 }}</p>
+		<input type="text" v-model="message4">
+		<first></first>
+		<todo-item
+			v-for="item in groceryList"
+			v-bind:todo="item"
+			v-bind:key="item.id"
+		></todo-item>
+		<div v-bind:class="className">Class binding!</div>
+		<button v-bind:disabled="isButtonDisabled">Button</button><br>
+		<a v-bind:href="googleUrl" v-bind:target="target">Google</a>
+		<p>Original message: {{ message }}</p>
+		<p>Computed message: {{ reversedMessage }}</p>
+		<div id="demo">{{ fullName }}</div>
+		<div class="nice" v-bind:class="{ first: isFirst, second: isSecond}">Some random text!</div>
+		<div v-bind:class="classObject">Computed property class binding!</div>
+		<div v-bind:style="{color: activeColor, fontSize: fontSize + 'px' }">Style binding!</div>
+		<div v-bind:style="styleObject">Style binding object!</div>
+		<ul>
+			<li v-for="(item, index) in items">
+				{{ index + 1 }} is {{ item.message }}
+			</li>
+		</ul>
+		<div v-for="(value, name, index) in object">
+			{{ index + 1 }}. {{ name }} : {{ value }}
+		</div>
+		<span v-for="n in evenNumbers">{{ n }}</span><br>
+		<span v-for="n in svakiTreci(numbers)">{{ n }}</span>
+		<div>
+			<span v-for="n in 7">{{ n }}</span>
+		</div>
+		<ul>
+			<template v-for="item in items">
+				<li>{{ item.message }}</li>
+				<li>template</li>
+			</template>
+		</ul>
+		<div>
+			<form v-on:submit.prevent="addNewTodo">
+				<label for="new-todo">Add a todo</label>
+				<input type="text" id="new-todo"
+							 placeholder="E. g. Feed the cat"
+							 v-model="newTodoText"
+				>
+				<button type="submit">Add</button>
+			</form>
+			<ul>
+				<li
+					is="todo-item2"
+					v-for="(todo, index) in todos2"
+					v-bind:key="todo.id"
+					v-bind:title="todo.title"
+					v-on:remove="todos2.splice(index, 1)">
+				</li>
+			</ul>
+		</div>
+		<div>
+			<button v-on:click="counter += 1">Add 1</button>
+			<p>The button above has been clicked {{ counter }} times.</p>
+			<button v-on:click="greet">Greet</button>
+		</div>
+		<form v-on:submit.prevent>
+			<p>Prevent reload page on form submit.</p>
+			<button type="submit">Send</button>
+		</form>
+		<button v-on:click.keyup.enter="greet">Alert with click or enter!</button>
+		<button v-on:click.right="greet">Right click triggers action</button>
+		<div>
+			<input type="checkbox" id="check1" v-model="check1">
+			<label for="check1"> {{ check1 }}</label>
+		</div>
+		<div>
+			<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+			<label for="jack">Jack</label>
+			<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+			<label for="mike">Mike</label>
+			<input type="checkbox" id="john" value="John" v-model="checkedNames">
+			<label for="john">John</label>
+			<br>
+			<span>Checked names: {{ checkedNames }}</span>
+		</div>
+		<div>
+			<select v-model="selected">
+				<option v-for="option in options" v-bind:value="option.value">
+					{{ option.text}}
+				</option>
+			</select>
+			<span>Selected: {{ selected }}</span>
+		</div>
+		<div>
+			<div :style="{ fontSize: postFontSize + 'em' }">
+				<blog-post
+					v-for="post in posts"
+					v-bind:key="post.id"
+					v-bind:post="post"
+					v-on:enlarge-text="postFontSize += 0.1"
+					v-on:ensmall-text="onSmallText"
+				></blog-post>
+			</div>
+		</div>
+		<div>
+			<button
+				v-for="tab in tabs"
+				v-bind:key="tab"
+				v-bind:class="['tab-button', { active: currentTab === tab }]"
+				v-on:click="currentTab = tab"
+			> {{ tab }}</button>
+			<component
+				v-bind:is="currentTabComponent"
+				class="tab"
+			></component>
+		</div>
+	</div>
+
+	<div id="new">
+		<button @click="message2 = !message2">Toggle message</button>
+		<button @click="toggle">Toggle message</button>
+		<div v-if="message2">
+			{{ message }}
+		</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>

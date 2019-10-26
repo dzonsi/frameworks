@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Transitions&animation from site</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<button v-on:click="show = !show">Toggle</button>
+			<transition name="fade">
+				<p v-if="show">Hello</p>
+			</transition>
+		</div>
+<!--binding-->
+		<div>
+			<input type="text" placeholder="Automatic focus" v-focus>
+		</div>
+
+		<div v-demo="{ color: 'white', text: 'hello', backgroundColor: 'dodgerblue' }">
+			Random text!
+		</div>
+
+		<div v-example:foo.a.b="message"></div>
+
+		<div>
+			<button @click="show2 = !show2">Toggle render</button>
+			<transition name="slide-fade">
+				<p v-if="show2">Hello world!</p>
+			</transition>
+		</div>
+
+		<div>
+			<button @click="show3 = !show3">Toggle show</button>
+			<transition name="bounce">
+				<p v-if="show3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+			</transition>
+		</div>
+
+		<div style="transform: translateX(50px);">
+			<button @click="show4 = !show4">Toggle show</button>
+			<transition
+				name="custom-classes-transition"
+				enter-active-class="animated tada"
+				leave-active-class="animated bounceOutRight"
+			>
+				<p v-if="show4">hello</p>
+			</transition>
+		</div>
+
+		<div>
+			<button @click="show5 = !show5">Toggle show</button>
+			<transition
+				v-on:before-enter="beforeEnter"
+				v-on:enter="enter"
+				v-on:leave="leave"
+				v-on:css="false"
+			>
+				<p style="width: 70px;" v-if="show5">Demo</p>
+			</transition>
+		</div>
+
+		<div>
+			<button v-on:click="isEditing = !isEditing">Toggle isEditing</button>
+			<transition name="fade" mode="out-in">
+				<button v-if="isEditing" key="save">
+					Save
+				</button>
+				<button v-else key="edit">
+					Edit
+				</button>
+			</transition><br>
+			<transition name="fade" mode="out-in">
+				<button v-bind:key="isEditing">
+					{{ isEditing ? 'Save' : 'Edit'}}
+				</button>
+			</transition><br>
+			<transition name="slide-fade" mode="out-in">
+				<button v-bind:key="state" v-on:click="state = !state">
+					{{ state ? 'On' : 'Off' }}
+				</button>
+			</transition><br>
+			<input type="text" v-model="docState">
+			<transition>
+			  <button v-if="docState === 'saved'" key="saved">
+			    Edit
+			  </button>
+			  <button v-if="docState === 'edited'" key="edited">
+			    Save
+			  </button>
+			  <button v-if="docState === 'editing'" key="editing">
+			    Cancel
+			  </button>
+			</transition><br>
+			<input type="text" v-model="docState2">
+			<transition>
+				<button v-bind:key="docState2">
+					{{ buttonMessage }}
+				</button>
+			</transition>
+		</div>
+
+		<h2>Component transition:</h2>
+
+		<div>
+			<input type="radio" id="a" v-model="view" name="view" value="v-a">
+			<label for="a">A</label>
+			<input type="radio" id="b" v-model="view" name="view" value="v-b">
+			<label for="b">B</label>
+			<transition name="component-fade" mode="out-in">
+				<component v-bind:is="view"></component>
+			</transition>
+		</div>
+
+		<div>
+			<button v-on:click="add">Add</button>
+			<button v-on:click="remove">Remove</button>
+			<transition-group name="list" tag="p">
+				<span v-for="item in items" v-bind:key="item" class="list-item">
+					{{ item }}
+				</span>
+			</transition-group>
+		</div>
+
+		<div>
+			<button v-on:click="shuffle">Shuffle</button>
+  		<transition-group name="flip-list" tag="ul">
+    		<li v-for="item in items2" v-bind:key="item">
+      		{{ item }}
+   			</li>
+  		</transition-group>
+		</div>
+
+		<div>
+			<input type="number" step="20" v-model.number="number">
+			<p>{{ animatedNumber }}</p>
+		</div>
+
+<!-- render functions-->
+		<div>
+			<anchored-heading v-bind:url="url" :num="7">Some slot text!</anchored-heading>
+			<nice :url="url"></nice>
+			<items :items="items"></items>
+			<message>Nikola</message>
+			<template functional>
+				<custom-button
+					class="strong"
+					v-bind="data.attrs"
+					v-on="data"
+				></custom-button>
+			</template>
+		</div>
+
+	</div>
+
+	<script type="module" src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animatons</title>
+	<link rel="stylesheet" type="text/css" href="animations.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-animate.min.js"></script>
+	<script src="animations.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="TestCtrl as test">
+	<button ng-click="test.showBoxOne = !test.showBoxOne">Toggle Box One</button>
+	<div class="box-one" ng-show="test.showBoxOne">
+		Hello! I am <b>box one</b>.
+	</div>
+	<br>
+	<button ng-click="test.people.push({name: 'Andrey Shevchenko'})">Add item to ng-repeat</button>
+	<button ng-click="test.people.pop()">Remove item to ng-repeat</button>
+	<div class="item" ng-repeat="person in test.people">{{person.name}}</div>
+
+	<input type="text" ng-model="test.newName">
+	<button ng-click="test.add()">Add new name to list</button><br>
+	<button ng-click="test.bigger = !test.bigger">Remove item to ng-repeat</button>
+	<button ng-click="test.lightTheme = !test.lightTheme">Remove item to ng-repeat</button>
+	<div class="box" ng-class="{'bigger': test.bigger, 'light-theme': test.lightTheme}">This is just a box.</div>
+</body>
+
+</html>

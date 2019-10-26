@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 1.0.x basic</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+
+
+</head>
+<body>
+  <div id="my_view">
+    <label for="name">Enter name:</label>
+    <input type="text" name="name" id="name" v-model="name">
+    <p>{{ name }} is {{ age }} years old.</p>
+    <p>{{ name | uppercase }}</p>
+
+    <p>Show items containing:
+    <input v-model="search" type="text"></p>
+    <ul>
+      <li v-for="friend in friends | filterBy search in 'name'"> {{ friend.name }} </li>
+    </ul>
+
+    <button v-on:click="myClickHandler">Say Hello</button>
+
+    <sitepoint channel='JavaScript'></sitepoint>
+    <sitepoint channel='Web'></sitepoint>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
