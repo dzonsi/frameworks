@@ -1,0 +1,15 @@
+.nav {
+	background-color: #777;
+}
+.nav-item {
+	display: inline-block;
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	padding: 10px 18px;
+	transition: all 0.5s;
+}
+.nav-item:hover {
+	background-color: #333;
+	color: yellow;
+}
