@@ -1,0 +1,38 @@
+<template name="RecipeSingleOld">
+	<h1 class="page-title">{{recipe.name}}</h1>
+	<h2>Description: {{recipe.desc}}</h2>
+	<h3>Ingredients:
+		<ul>
+			{{#each recipe.ingredients}}
+				<li>{{name}} - {{amount}}</li>
+			{{/each}}
+		</ul>
+	</h3>
+</template>
+
+<template name="RecipeSingle">
+	{{#if Template.subscriptionsReady}}
+		<article class="recipe {{#if 	recipe.inMenu}}in-menu{{/if}}">
+			<h3>{{recipe.name}}</h3>
+			{{#if editMode}}
+				{{> quickForm collection="Recipes" 	id=updateRecipeId type="update" doc=recipe 	autosave=true}}
+			{{else}}
+				<p>{{recipe.desc}}</p>
+				<p>
+					{{#each recipe.ingredients}}
+						<span class="ingredient">{{name}} - 	{{amount}}</span>
+					{{/each}}
+				</p>
+				{{#if recipe.inMenu}}
+					<button class="btn-deny toggle-menu">Remove 	from Menu</button>
+				{{else}}
+				 	<button class="btn-primary toggle-menu">Add to 	Menu</button>
+				{{/if}}
+			{{/if}}
+				<i class="fa fa-trash"></i>
+				<i class="fa fa-pencil"></i>
+		</article>
+	{{else}}
+		<H3>Loading recipe...</H3>
+	{{/if}}
+</template>
