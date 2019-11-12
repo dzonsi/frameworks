@@ -1,0 +1,26 @@
+.main {
+	text-align: center;
+	color: dodgerblue;
+}
+.btn {
+	border: 1px solid #bbb;
+	font-size: 20px;
+	padding: 10px 14px;
+	color: #bbb;
+	background-color: white;
+	border-radius: 6px;
+}
+.btn:hover {
+	color: white;
+	background-color: #bbb;
+}
+.btn:active {
+	transform: translate(1px, 1px);
+}
+.basic {
+	width: 200px;
+	height: 200px;
+	border-radius: initial;
+	background-color: linen;
+	margin-top: 20px;
+}

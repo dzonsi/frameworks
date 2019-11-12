@@ -1,0 +1,10 @@
+<button (click)="insert()" class="btn">Inser/remove component!</button>
+<div @myInsertRemoveTrigger
+		 *ngIf="isShown"
+		 class="insert-remove-container"
+		 (@myInsertRemoveTrigger.start)="onAnimationEventStart($event)"
+		 (@myInsertRemoveTrigger.done)="onAnimationEventDone($event)"
+>
+  <p>The box is inserted</p>
+</div>
+<div [@rotate]="isRotate ? 'show' : 'close'" class="loading"></div>

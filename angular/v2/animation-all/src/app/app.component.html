@@ -1,0 +1,7 @@
+<h1 class="main">{{ title }}</h1>
+<div>
+  <button (click)="toggle()" class="btn">Trigger basic animation small to big</button>
+  <button (click)="toggleMiddle()" class="btn">Trigger basic animation * to middle</button>
+  <div [@basic]="isAnimate" class="basic"></div>
+</div>
+<app-inser-remove></app-inser-remove>
