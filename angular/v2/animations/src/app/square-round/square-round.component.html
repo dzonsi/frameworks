@@ -1,0 +1,4 @@
+<button (click)="animationToggle()">Triger square-round animation!</button>
+<div [@squareRound]="round ? 'square' : 'round'" class="square">
+	<p [@scale]="round ? 'normal' : 'big'" class="pos">Animation!</p>
+</div>

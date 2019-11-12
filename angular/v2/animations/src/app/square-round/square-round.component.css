@@ -1,0 +1,16 @@
+.square {
+	width: 400px;
+	height: 400px;
+	background-color: dodgerblue;
+	color: white;
+	position: relative;
+}
+.pos {
+	font-size: 25px;
+	margin-top: 0;
+	margin-bottom: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+}

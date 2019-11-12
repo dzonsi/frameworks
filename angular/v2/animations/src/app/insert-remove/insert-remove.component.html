@@ -1,0 +1,6 @@
+<button (click)="toggle()">Toggle Insert/Remove</button>
+<div @myInsertRemoveTrigger *ngIf="isShown" class="insert-remove-container"
+		 (@myInsertRemoveTrigger.start)="onAnimationEvent($event)"
+		(@myInsertRemoveTrigger.done)="onAnimationEvent($event)">
+	<p>The box is inserted</p>
+</div>
