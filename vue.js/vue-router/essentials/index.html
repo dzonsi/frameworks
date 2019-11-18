@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue router essentials</title>
+
+	<link rel="stylesheet" href="index.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<router-link to="/first">Go to First</router-link>
+		<router-link :to="{name: 'second-route'}">Go to Second</router-link>
+		<router-link to="/third">Go to Third</router-link>
+		<router-link :to="{name: 'third-route', params: { id: 'new'}}">Go to Third/new</router-link>
+		<router-link to="/third/all">Go to Third/all</router-link>
+		<router-link to="/user/7">Go to user/7</router-link>
+		<router-link to="/user/7/profile">Go to user/7/profile</router-link>
+		<router-link to="/user/7/posts">Go to user/7/posts</router-link>
+		<br>
+		<router-link to="/named">Go to named views</router-link>
+		<router-link to="/named-backwards">Go to named views backwards</router-link>
+		<br>
+		<router-link to="/redirect">Go to /redirect</router-link>
+		<router-link to="/redirect-with-function">Go to /redirect-with-function</router-link>
+		<br>
+		<router-link to="/alias">Go to /alias, which is alias to first</router-link>
+		<br>
+		<router-link to="/user-with-props">Component with props</router-link>
+
+		<router-view></router-view>
+		<router-view name="a"></router-view>
+		<router-view name="b"></router-view>
+
+		<br>
+		<button @click="goToThird">Go to /third using router.push()</button>
+		<button @click="replace">Got ot /user/8 with router.replace</button>
+		<br>
+		<button @click="historyBack">Back</button>
+		<button @click="historyForward">Forward</button>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>

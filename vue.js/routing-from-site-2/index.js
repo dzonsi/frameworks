@@ -48,23 +48,29 @@ const router = new VueRouter({
 		{
 			path: '/settings',
 			component: UserSettings,
-			children: [{
-				path: 'emails',
-				component: UserEmailsSubscriptions
-			},
-			{
-				path: 'profile',
-				components: {
-					default: UserProfile,
-					helper: UserProfilePreview
+			children: [
+				{
+					path: 'emails',
+					component: UserEmailsSubscriptions
+				},
+				{
+					path: 'profile',
+					components: {
+						default: UserProfile,
+						helper: UserProfilePreview
+					}
 				}
-			}]
+			]
 		}
 	]
 });
 
-router.push('/settings/emails');
+
 
 new Vue({
 	router
 }).$mount('#app');
+
+router.push('/settings/emails', () => {
+	console.log('ok')
+}, () => { console.log('error')});
