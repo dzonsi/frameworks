@@ -212,7 +212,8 @@ const FetchingBeforeNavigation = {
 		const id = to.params.id;
 		console.log(id);
 		console.log(next)
-// how to call next inside fetch ???
+// how to call next inside fetch when router mode is history ???
+// throws an error NS_ERROR_FILE_UNRECOGNIZED_PATH
 		fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
 			.then(response => response.json())
 			.then(response => {
@@ -330,7 +331,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-	mode: 'history',
 	routes
 });
 
