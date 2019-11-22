@@ -4,7 +4,7 @@
 
 <script>
 export default {
-	name: 'Button',
+	name: 'AddButton',
 	methods: {
 		add() {
 			this.$emit('submit');

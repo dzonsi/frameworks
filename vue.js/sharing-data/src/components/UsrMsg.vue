@@ -7,17 +7,17 @@
 			v-model="tempMessage"
 			@keyup.enter="submit"
 		/>
-		<Button @submit="submit" />
+		<AddButton @submit="submit" />
 	</div>
 </template>
 
 <script>
-import Button from './Button';
+import AddButton from './AddButton';
 
 export default {
 	name: 'UsrMsg',
 	components: {
-		Button
+		AddButton
 	},
 	data() {
 		return {
