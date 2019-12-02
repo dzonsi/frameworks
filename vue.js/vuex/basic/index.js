@@ -53,10 +53,32 @@ const store = new Vuex.Store({
 
 new Vue({
 	el: '#app',
-	computed: {
-		count() {
-			return store.state.count
+	// make store availabe
+	store,
+	data() {
+		return {
+			localCount: 5
 		}
+	},
+	// mapState helper object type
+	// normal computed merge with mapState
+	// using object spread operator
+	computed: {
+		localComputed() {
+			return this.localCount * 2;
+		},
+		...Vuex.mapState({
+			// arrow function
+			count: state => state.count,
+			// passing the string value 'count'
+			// is same as 'state => state.count'
+			countAlias: 'count',
+			// to access local state with `this`,
+			// a normal function must be used
+			countPlusLocalState (state) {
+    	  return state.count + this.localCount
+    	}
+		})
 	},
 	methods: {
 		increment() {
@@ -114,18 +136,23 @@ const Practice = {
 		}
 	},
 	computed: {
-		count() {
-			return this.$store.state.count
-		},
-		doneTodos() {
-			return this.$store.getters.doneTodos
-		},
-		doneTodosCount() {
-    	return this.$store.getters.doneTodosLength
-  	},
-  	getTodo() {
-  		return this.$store.getters.getTodoById(3)
-  	}
+		// mapState helper array type
+		...Vuex.mapState([
+			'count'
+		]),
+		// mapGetters helper
+		// array type
+		...Vuex.mapGetters([
+			'doneTodos',// this.$store.getters.doneTodos
+			'doneTodosCount',// this.$store.getters.doneTodosLength
+		]),
+		// how to pass parameter to getter with mapGetters
+		// or this is bad solution, use method instead ???
+		...{
+  		getTodo() {
+  			return this.$store.getters.getTodoById(3)
+  		}
+		}
 	},
 	methods: {
 		incrementWithNumber() {

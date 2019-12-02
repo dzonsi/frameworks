@@ -11,7 +11,9 @@
 </head>
 <body>
 	<div id="app">
-		<p>{{ count }}</p>
+		<p>Count: {{ count }}</p>
+		<p>countAlias: {{ countAlias }}</p>
+		<p>countPlusLocalState: {{ countPlusLocalState }}, localComputed: {{ localComputed }}</p>
   	<p>
     	<button v-on:click="increment">+</button>
     	<button @click="decrement">-</button>
