@@ -27,7 +27,7 @@ export default {
 	methods: {
 		submit() {
 			if(!this.tempMessage) {
-				alert('You must enter message!');
+				this.tempMessage = 'You must enter message!';
 			} else {
 				this.$emit('inputData', this.tempMessage);
 				this.tempMessage = '';
