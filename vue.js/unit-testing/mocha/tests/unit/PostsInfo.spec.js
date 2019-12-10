@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import PostsInfo from '@/components/PostsInfo'
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 
 const mock = new MockAdapter(axios)
-const localVue = createLocalVue()
+
 
 // can't mock lifecycle hooks in test
 describe('PostsInfo', () => {
@@ -15,7 +15,7 @@ describe('PostsInfo', () => {
 		mock
 			.onGet('https://jsonplaceholder.typicode.com/posts')
 			.reply(200, [{first: 'first'}])
-		const wrapper = mount(PostsInfo, { localVue })
+		const wrapper = mount(PostsInfo)
 		expect(wrapper.vm.posts).to.equal(null)
 		await wrapper.vm.getApi()
 		expect(wrapper.vm.posts.data[0].first).to.equal('first')
@@ -26,7 +26,7 @@ describe('PostsInfo', () => {
 		mock
 			.onGet('https://jsonplaceholder.typicode.com/posts')
 			.networkError()
-		const wrapper = mount(PostsInfo, { localVue })
+		const wrapper = mount(PostsInfo)
 		await wrapper.vm.getApi()
 		expect(wrapper.vm.posts).to.equal(null)
 	})
@@ -36,7 +36,7 @@ describe('PostsInfo', () => {
 		mock
 			.onGet('https://jsonplaceholder.typicode.com/posts')
 			.timeout()
-		const wrapper = mount(PostsInfo, { localVue })
+		const wrapper = mount(PostsInfo)
 		await wrapper.vm.getApi()
 		expect(wrapper.vm.posts).to.equal(null)
   })

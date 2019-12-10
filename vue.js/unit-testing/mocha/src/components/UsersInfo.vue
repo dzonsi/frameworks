@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: 'UsersInfo',
 	data() {
@@ -49,20 +50,20 @@ export default {
 		}
 	},
 	created() {
-		fetch('https://jsonplaceholder.typicode.com/users')
-			.then(response => response.json())
-			.then(users => {
-				console.log(users)
-				this.users = users
-				console.log(this.users)
-			})
-			.catch(error => console.log(error))
-
+		this.fetchUsers()
 	},
 	methods: {
+		fetchUsers() {
+			return axios.get('https://jsonplaceholder.typicode.com/users')
+				.then(users => {
+					//console.log(users)
+					this.users = users
+					//console.log(this.users)
+				})
+				.catch(error => this.error = error)
+		},
 		addUser() {
-			fetch('https://jsonplaceholder.typicode.com/users', {
-				method: 'POST',
+			axios.post('https://jsonplaceholder.typicode.com/users', {
 				body: JSON.stringify({
 					name: this.newName,
 					username: this.newUsername,
@@ -72,25 +73,23 @@ export default {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
 			})
-			.then(response => response.json())
 			.then(user => {
-				console.log(user)
+				//console.log(user)
 				this.newUser = user
 				this.users.push(user)
 				this.newUserInfo = true
 			})
-			.catch(error => console.log(error))
+			.catch(error => this.error = error)
 		},
 		showUser(id) {
-			console.log(id)
-			fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-			.then(response => response.json())
+			//console.log(id)
+			axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
 			.then(user => {
-				console.log(user)
+				//console.log(user)
 				this.singleUser = user
 				this.singleUserShow = true
 			})
-			.catch(error => console.log(error))
+			.catch(error => this.error = error)
 		}
 	}
 }
