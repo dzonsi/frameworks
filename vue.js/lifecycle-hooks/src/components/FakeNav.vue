@@ -8,10 +8,10 @@
 				<a class="nav-link" href="javascript:void(0)" @click="stopTime"> {{ second }}</a>
 			</li>
 			<li>
-				<a class="nav-link" href="javascript:void(0)"> {{ third }}</a>
+				<a id="third" class="nav-link" href="javascript:void(0)"> {{ third }}</a>
 			</li>
 			<li>
-				<a class="nav-link" href="javascript:void(0)">{{ fourth }}</a>
+				<a id="fourth" class="nav-link" href="javascript:void(0)">{{ fourth }}</a>
 			</li>
 		</ul>
 		<h1>{{ name }}</h1>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import 'jquery'
 export default {
 	name: 'FakeNav',
 	data() {
@@ -74,7 +75,9 @@ export default {
 	// this.$el)
 	// used for modifying the DOM
 	mounted() {
-		console.log(this.$el);
+		console.log(this.$el)
+		$('#fourth').css('color', 'magenta')
+		$('#third').css('color', 'lime')
 	},
 	// Updating hooks are called whenever a
 	// reactive property used by your
