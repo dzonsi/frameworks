@@ -2,9 +2,11 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">First</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/second">Second</router-link>
     </div>
-    <router-view/>
+    <vue-page-transition name="fade-in-up">
+      <router-view/>
+    </vue-page-transition>
   </div>
 </template>
 
@@ -26,7 +28,12 @@
   color: #2c3e50;
 }
 
+#nav a:hover {
+  color: #6b8cae;
+}
+
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
