@@ -1,0 +1,6 @@
+// functions, must came before variables
+@import '../node_modules/bootstrap/scss/functions';
+// our custom variables file
+@import './variables';
+// bootstrap file that compiles the css
+@import '../node_modules/bootstrap/scss/bootstrap';
