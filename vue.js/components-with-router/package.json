@@ -12,6 +12,7 @@
     "vue": "^2.6.10",
     "vue-accordion": "^1.0.0",
     "vue-awesome": "^4.0.2",
+    "vue-fullpage.js": "^0.1.5",
     "vue-page-transition": "^0.2.2",
     "vue-progressbar": "^0.7.5",
     "vue-radial-progress": "^0.2.10",

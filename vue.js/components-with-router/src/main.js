@@ -23,6 +23,12 @@ Vue.use(VueProgressBar, {
   height: '10px'
 })
 
+// vue-fullpage
+
+import VueFullPage from 'vue-fullpage.js'
+
+Vue.use(VueFullPage)
+
 Vue.config.productionTip = false
 
 new Vue({

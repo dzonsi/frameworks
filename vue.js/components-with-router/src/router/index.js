@@ -19,6 +19,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Second.vue'),
     // router view overwrite transition for single route
     meta: { transition: 'zoom'}
+  },
+  {
+    path: '/third',
+    name: 'third',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Third.vue'),
+    // router view overwrite transition for single route
+    meta: { transition: 'flip-x'}
   }
 ]
 

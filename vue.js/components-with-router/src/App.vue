@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">First</router-link> |
-      <router-link to="/second">Second</router-link>
+      <router-link to="/second">Second</router-link> |
+      <router-link to="/third">Third</router-link>
     </div>
     <vue-page-transition name="fade-in-up">
       <router-view/>
