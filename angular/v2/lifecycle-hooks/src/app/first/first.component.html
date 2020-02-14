@@ -1,0 +1,11 @@
+<h1>
+  First component, lifecycle hooks in console.log!
+</h1>
+<input type="text" [(ngModel)]="text">
+<button class="btn" (click)="add(text)">Add new</button>
+<input type="text" [(ngModel)]="newPower">
+<button class="btn" (click)="addNewPower(newPower)">Change power</button>
+<h2>{{ power }}</h2>
+<h2 *ngFor="let x of data; let i = index">
+	{{ x + ' ' + ( i + 1) }}
+</h2>

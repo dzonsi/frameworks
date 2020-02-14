@@ -1,0 +1,21 @@
+<div class="home">
+
+<div *ngIf="advertisements">
+  <app-ad-banner [ads]="ads"></app-ad-banner>
+</div>
+
+<h1 class="tx-center">
+  Welcome to {{ title }}!
+</h1>
+
+<div class="tx-center">
+  <button class="btn" (click)="changeStatus()">Change component</button>
+  <button class="btn" (click)="hideAdvertisements()">{{ advertisements == true ? 'Hide' : 'Show' }} advertisements</button>
+</div>
+
+<div>{{ show }}</div>
+
+<app-first *ngIf="!show" [data]="data" [power]="power" [addNew]="add" [changePower]="changePower"></app-first>
+<app-second *ngIf="show"></app-second>
+
+</div>

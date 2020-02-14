@@ -1,0 +1,9 @@
+:host {
+	color: dodgerblue;
+};
+:host(.home) {
+	color: mediumseagreen;
+};
+:host-context(.home) .btn {
+	color: purple;
+};

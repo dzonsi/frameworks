@@ -1,0 +1,13 @@
+.tx-center {
+	text-align: center;
+}
+.btn {
+	font-size: 20px;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.btn:active {
+	transform: translate(1px, 1px);
+}
