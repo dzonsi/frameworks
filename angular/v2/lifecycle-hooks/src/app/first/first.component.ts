@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChange, ChangeDetectorRef,
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, SimpleChange, ChangeDetectorRef,
 DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
 
 @Component({
@@ -15,8 +15,8 @@ export class FirstComponent implements OnInit {
 
   @Input() data: string[];
   @Input() power: string;
-  @Input() addNew: any;
-  @Input() changePower: any;
+  @Output() addNew = new EventEmitter<string>();
+  @Output() changePower = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChange) {
   	console.log('ngOnChanges');
@@ -45,13 +45,13 @@ export class FirstComponent implements OnInit {
   }
 
   add(text: string): void {
-  	this.addNew(text);
+  	this.addNew.emit(text);
   	this.text = '';
   	this.cd.detectChanges();
   }
 
   addNewPower(text: string): void {
-  	this.changePower(text);
+  	this.changePower.emit(text);
   	this.newPower = '';
   }
 

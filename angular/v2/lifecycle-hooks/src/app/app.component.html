@@ -15,7 +15,7 @@
 
 <div>{{ show }}</div>
 
-<app-first *ngIf="!show" [data]="data" [power]="power" [addNew]="add" [changePower]="changePower"></app-first>
+<app-first *ngIf="!show" [data]="data" [power]="power" (addNew)="add($event)" (changePower)="changePower($event)"></app-first>
 <app-second *ngIf="show"></app-second>
 
 </div>
