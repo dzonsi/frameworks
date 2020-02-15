@@ -4,11 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PopupComponent } from './popup/popup.component';
+import { CustomDirective } from './custom.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopupComponent
+    PopupComponent,
+    CustomDirective
   ],
   imports: [
     BrowserModule,

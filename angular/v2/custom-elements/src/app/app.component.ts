@@ -11,6 +11,7 @@ import { PopupComponent } from './popup/popup.component';
 export class AppComponent {
 
   title = 'custom-elements';
+  fontSize: string;
 
   constructor(injector: Injector, public popup: PopupService) {
   	// convert PopupComponent to a custom element

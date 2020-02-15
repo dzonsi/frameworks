@@ -4,3 +4,18 @@
 
 <input #input value="Message">
 <button (click)="popup.showAsElement(input.value)">Show as element</button>
+
+
+<h2 appCustom [appCustom]="fontSize">Text for practice...</h2>
+<h2 [appCustom]="fontSize">Text for practice...</h2>
+
+<h4>Pick a font size</h4>
+
+<div>
+  <input type="radio" name="size" (click)="fontSize = '30px'">30px
+  <br>
+  <input type="radio" name="size" (click)="fontSize = '40px'">40px
+  <br>
+  <input type="radio" name="size" (click)="fontSize = '50px'">50px
+
+</div>
